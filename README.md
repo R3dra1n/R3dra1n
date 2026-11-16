@@ -15,6 +15,6 @@ A personal space for notes, experiments, and creative projects. I enjoy explorin
 
 ### 🐍 Contribution Snake
 
-<p align="center"><img src="assets/contributions.svg" alt="An animated snake crossing a year of real GitHub contributions. Darker squares indicate more contributions." width="100%"></p>
+<p align="center"><img src="assets/contributions-snake.svg" alt="An animated snake grows as it visits contribution days; squares reappear after it passes. Darker squares indicate more contributions." width="100%"></p>
 
 <sub>Real GitHub contributions · Animated snake · Updated daily</sub>

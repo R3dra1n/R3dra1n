@@ -20,7 +20,6 @@ def main():
         raise RuntimeError('Could not retrieve GitHub contribution data')
     weeks=result['data']['user']['contributionsCollection']['contributionCalendar']['weeks']
     if not weeks: raise RuntimeError('Empty contribution calendar')
-    snake = os.environ.get('CONTRIB_STYLE') == 'snake'
     colors=['#e2ece9','#c3ddd8','#93c4bf','#619c9f','#3d718b']
     parts=['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 330" role="img" aria-labelledby="title desc">',
         '<title id="title">A year of GitHub contributions</title>',
@@ -44,31 +43,10 @@ def main():
             count=int(day['contributionCount'])
             level=0 if count==0 else min(4,1+int(math.log2(count)))
             label=html.escape(day['date'])
-            cell=f'<rect x="{56+col*18.4:.1f}" y="{133+row*19}" width="13" height="13" rx="3" fill="{colors[level]}"><title>{label}: {count} contributions</title>'
-            if snake and count:
-                horizontal=(len(weeks)-1)*18.4
-                distance=row*(horizontal+19)+(col if row%2==0 else len(weeks)-1-col)*18.4
-                total=7*horizontal+6*19
-                t=distance/total
-                before=max(0.001,min(.997,t-.002))
-                after=min(.999,max(before+.001,t+.002))
-                cell+=f'<animate attributeName="opacity" values="1;1;0.18;0.18" keyTimes="0;{before:.4f};{after:.4f};1" dur="50s" repeatCount="indefinite"/>'
-            parts.append(cell+'</rect>')
+            parts.append(f'<rect x="{56+col*18.4:.1f}" y="{133+row*19}" width="13" height="13" rx="3" fill="{colors[level]}"><title>{label}: {count} contributions</title></rect>')
     parts.extend(['<text x="56" y="298" font-family="Arial,sans-serif" font-size="12" fill="#779096">One idea at a time.</text>',
       '<text x="885" y="298" font-family="Arial,sans-serif" font-size="12" fill="#779096">Less</text>'])
     for i,c in enumerate(colors): parts.append(f'<rect x="{920+i*19}" y="287" width="13" height="13" rx="3" fill="{c}"/>')
-    parts.append('<text x="1020" y="298" font-family="Arial,sans-serif" font-size="12" fill="#779096">More</text>')
-    if snake:
-        x0=62.5
-        x1=62.5+(len(weeks)-1)*18.4
-        path=f'M {x0} 139.5'
-        for row in range(7):
-            path+=f' L {x1 if row%2==0 else x0:.1f} {139.5+row*19:.1f}'
-            if row<6:
-                path+=f' L {x1 if row%2==0 else x0:.1f} {139.5+(row+1)*19:.1f}'
-        for i in range(5):
-            parts.append(f'<g><circle r="6" fill="#729e8b" stroke="#f8f7f1" stroke-width="1"/><animateMotion path="{path}" dur="50s" begin="-{i*0.12:.2f}s" repeatCount="indefinite"/></g>')
-        parts.append(f'<g><circle r="7" fill="#477b6d" stroke="#f8f7f1" stroke-width="1"/><circle cx="-2" cy="-2" r="1" fill="white"/><circle cx="2" cy="-2" r="1" fill="white"/><animateMotion path="{path}" dur="50s" begin="-0.60s" repeatCount="indefinite"/></g>')
-    parts.append('</svg>')
+    parts.append('<text x="1020" y="298" font-family="Arial,sans-serif" font-size="12" fill="#779096">More</text></svg>')
     out=Path(__file__).resolve().parent.parent/'assets'/'contributions.svg';out.write_text('\n'.join(parts),encoding='utf-8');print(f'Generated {len(weeks)} weeks.')
 if __name__=='__main__':main()

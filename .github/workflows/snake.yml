@@ -1,0 +1,30 @@
+name: Update contribution snake
+
+on:
+  schedule:
+    - cron: '24 19 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Generate snake
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_USERNAME: ${{ github.repository_owner }}
+        run: python3 scripts/generate_snake.py
+      - name: Commit updated animation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add assets/contributions-snake.svg
+          if ! git diff --cached --quiet; then
+            git commit -m 'Update contribution snake'
+            git pull --rebase
+            git push
+          fi
