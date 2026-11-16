@@ -1,4 +1,4 @@
-name: Update 3D contributions
+name: Update contribution snake
 
 on:
   schedule:
@@ -17,6 +17,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_USERNAME: ${{ github.repository_owner }}
+          CONTRIB_STYLE: snake
         run: python3 scripts/generate_contributions.py
       - name: Commit updated chart
         run: |

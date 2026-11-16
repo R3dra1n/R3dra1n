@@ -13,8 +13,8 @@ A personal space for notes, experiments, and creative projects. I enjoy explorin
 - **[PKU_boyaTower](https://github.com/R3dra1n/PKU_boyaTower)** — A 3D model of Peking University's Boya Tower.
 - **[python](https://github.com/R3dra1n/python)** — Python side projects and experiments.
 
-### 🌊 Contribution Tides
+### 🐍 Contribution Snake
 
-<p align="center"><img src="assets/contributions.svg" alt="A year of GitHub contributions. Each square represents a day, and darker colors indicate more contributions." width="100%"></p>
+<p align="center"><img src="assets/contributions.svg" alt="An animated snake crossing a year of real GitHub contributions. Darker squares indicate more contributions." width="100%"></p>
 
-<sub>Real GitHub contributions · Updated daily</sub>
+<sub>Real GitHub contributions · Animated snake · Updated daily</sub>
