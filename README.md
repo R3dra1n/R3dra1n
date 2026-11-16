@@ -1,4 +1,4 @@
-<p align="center"><picture><source media="(max-width: 600px)" srcset="assets/banner-vector-ground-v2-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/banner-vector-ground-v2-dark.svg"><img src="assets/banner-vector-ground-v2.svg" alt="Hello, I'm Nolla. A cherry tree sways by the sea." width="100%"></picture></p>
+<p align="center"><picture><source media="(max-width: 600px)" srcset="assets/banner-vector-island-v1-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/banner-vector-island-v1-dark.svg"><img src="assets/banner-vector-island-v1.svg" alt="Hello, I'm Nolla. A cherry tree sways by the sea." width="100%"></picture></p>
 
 <p align="center"><picture><source media="(max-width: 600px)" srcset="assets/about-vector-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/about-vector-dark.svg"><img src="assets/about-vector.svg" alt="About: A personal space for notes, experiments, and creative projects. Interests: AI, Python, and 3D." width="100%"></picture></p>
 
