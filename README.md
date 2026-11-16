@@ -1,20 +1,13 @@
-<p align="center"><img src="assets/coastal-banner.png" alt="Hello, I'm Nolla. Notes, experiments and creative projects by the sea." width="100%"></p>
+<p align="center"><picture><source media="(max-width: 600px)" srcset="assets/banner-mobile-adaptive.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/coastal-tree-breeze-dark.gif"><img src="assets/coastal-tree-breeze.gif" alt="Hello, I'm Nolla. A cherry tree sways by the sea." width="100%"></picture></p>
 
-### 🌿 About
-
-A personal space for notes, experiments, and creative projects. I enjoy exploring new tools and learning by building.
-
-### ✧ Interests
-
-<p><img src="assets/ai.png" alt="AI" width="90"> <img src="assets/python.png" alt="Python" width="105"> <img src="assets/3d.png" alt="3D" width="90"></p>
+<p align="center"><picture><source media="(max-width: 600px)" srcset="assets/about-mobile-adaptive.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/about-panel-dark.png"><img src="assets/about-panel.png" alt="About: A personal space for notes, experiments, and creative projects. Interests: AI, Python, and 3D." width="100%"></picture></p>
 
 ### ◇ Selected Projects
 
-- **[PKU_boyaTower](https://github.com/R3dra1n/PKU_boyaTower)** — A 3D model of Peking University's Boya Tower.
-- **[python](https://github.com/R3dra1n/python)** — Python side projects and experiments.
+<p align="center"><a href="https://github.com/R3dra1n/PKU_boyaTower"><picture><source media="(max-width: 600px)" srcset="assets/project-boya-mobile-adaptive.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/project-boya-dark.png"><img src="assets/project-boya.png" alt="PKU_boyaTower — 3D model of Boya Tower" width="49%"></picture></a> <a href="https://github.com/R3dra1n/python"><picture><source media="(max-width: 600px)" srcset="assets/project-python-mobile-adaptive.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/project-python-dark.png"><img src="assets/project-python.png" alt="python — side projects and experiments" width="49%"></picture></a></p>
 
-### 🌊 Contribution Tides
+### ✿ Contribution Tides
 
-<p align="center"><img src="assets/contributions.svg" alt="A year of GitHub contributions. Each square represents a day, and darker colors indicate more contributions." width="100%"></p>
+<p align="center"><picture><source media="(max-width: 600px)" srcset="assets/contributions-mobile-adaptive.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/contributions-snake-dark.svg"><img src="assets/contributions-snake.svg" alt="An animated snake grows as it visits real GitHub contributions, and squares recover after it passes." width="100%"></picture></p>
 
-<sub>Real GitHub contributions · Updated daily</sub>
+<sub>Real GitHub contributions · Updated daily · A little snake that grows and starts again</sub>
