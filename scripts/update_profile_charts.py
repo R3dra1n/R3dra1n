@@ -9,10 +9,10 @@ p = Path(__file__).resolve().parent.parent / 'assets'
 generate_snake.main()
 desktop = p / 'contributions-snake.svg'
 s = desktop.read_text(encoding='utf-8')
-s = s.replace('#f8f7f1', '#f8f4e9').replace('#729e8b', '#d5a0a5').replace('#477b6d', '#b96e82')
+s = s.replace('#f8f7f1', '#f8f4e9').replace('#729e8b', '#6eae84').replace('#477b6d', '#3a805d')
 s = s.replace('</svg>', '<g fill="#dba2af"><rect x="1006" y="42" width="4" height="4"/><rect x="1020" y="49" width="4" height="4"/><rect x="1030" y="38" width="4" height="4"/></g></svg>')
 desktop.write_text(s, encoding='utf-8')
-raw=(p/'contributions-snake.svg').read_text(); matches=list(re.finditer(r'<rect x="([\d.]+)" y="([\d.]+)" width="13" height="13" rx="3" fill="([^\"]+)"><title>(\d{4}-\d\d-\d\d): (\d+) contributions</title>',raw));assert len(matches)>=360
+raw=(p/'contributions-snake.svg').read_text(); matches=list(re.finditer(r'<rect x="([\d.]+)" y="([\d.]+)" width="13" height="13" rx="(?:3|7)" fill="([^\"]+)"><title>(\d{4}-\d\d-\d\d): (\d+) contributions</title>',raw));assert len(matches)>=360
 cells=[]
 for m in matches:
  x,y,col,date_,count=m.groups();colno=round((float(x)-56)/18.4);row=round((float(y)-133)/19);cells.append((colno,row,int(count),date_,col))
@@ -20,25 +20,28 @@ W=800;stride=23;padx=69; rowys=[110+i*18+(75 if i>=7 else 0) for i in range(14)]
 # first panel row y=110..218, second panel row y=311..419 (spacing leaves room for label)
 rowys=[110+i*18+(75 if i>=7 else 0) for i in range(14)]
 parts=[x.replace('y="315"','y="295"') for x in parts]
-total=14*horizontal+sum(rowys[i+1]-rowys[i] for i in range(13));food=[]
+return_distance=18+((rowys[-1]+8)-(rowys[0]-14))+18+22
+total=14*horizontal+sum(rowys[i+1]-rowys[i] for i in range(13))+return_distance;food=[]
 for week,row,count,date_,color in cells:
  panel=week//27;col=week%27;r=panel*7+row;y=rowys[r];x=padx+col*stride
  anim=''
  if count:
   distance=r*horizontal+sum(rowys[i+1]-rowys[i] for i in range(r))+(col if r%2==0 else 26-col)*stride;t=distance/total;food.append(t);before=max(.001,min(.994,t-.001));after=min(.996,max(before+.001,t+.001));rs=min(.998,max(after+.0004,t+.055));rf=min(.9995,max(rs+.0004,t+.075));anim=f'<animate attributeName="opacity" values="1;1;0.18;0.18;1;1" keyTimes="0;{before:.4f};{after:.4f};{rs:.4f};{rf:.4f};1" dur="50s" repeatCount="indefinite"/>'
- parts.append(f'<rect x="{x}" y="{y}" width="16" height="16" rx="3" fill="{color}"><title>{date_}: {count} contributions</title>{anim}</rect>')
+ parts.append(f'<rect x="{x}" y="{y}" width="16" height="16" rx="{8 if count else 3}" fill="{color}"><title>{date_}: {count} contributions</title>{anim}</rect>')
 x0=padx+8;x1=padx+26*stride+8;path=f'M {x0} {rowys[0]+8}'
 for r in range(14):
  x=x1 if r%2==0 else x0;path+=f' L {x} {rowys[r]+8}'
  if r<13:path+=f' L {x} {rowys[r+1]+8}'
+path+=f' L {x0-18} {rowys[-1]+8} L {x0-18} {rowys[0]-14} L {x0} {rowys[0]-14} L {x0} {rowys[0]+8} Z'
 food.sort()
-for i in reversed(range(1,3+len(food))):
- growth=0 if i<=2 else food[i-3];visible=min(.999,max(.001,max(growth,i*.095/50)));before=max(0,visible-.0005);delay=(50-i*.095)%50;parts.append(f'<g opacity="0"><circle r="7" fill="#d5a0a5" stroke="#f8f4e9" stroke-width="1"/><animate attributeName="opacity" values="0;0;1;1" keyTimes="0;{before:.5f};{visible:.5f};1" dur="50s" repeatCount="indefinite"/><animateMotion path="{path}" dur="50s" begin="-{delay:.4f}s" repeatCount="indefinite"/></g>')
-parts.append(f'<g><circle r="8" fill="#b96e82" stroke="#f8f4e9" stroke-width="1"/><circle cx="-2" cy="-2" r="1" fill="white"/><circle cx="2" cy="-2" r="1" fill="white"/><animateMotion path="{path}" dur="50s" repeatCount="indefinite"/></g>');parts.append('<text x="69" y="490" font-family="Arial,sans-serif" font-size="14" fill="#779096">Each square represents one day · The snake grows and starts again</text></svg>')
+segment_count=2+len(food)
+for i in reversed(range(1,segment_count+1)):
+ growth=0 if i<=2 else food[i-3];visible=min(.999,max(.001,max(growth,i*.095/50)));before=max(0,visible-.0005);delay=(50-i*.095)%50;fade_start=max(visible+.002,.89+.08*(segment_count-i)/max(1,segment_count-1));fade_end=min(.9995,fade_start+.015);parts.append(f'<g opacity="0"><circle r="7" fill="#6eae84" stroke="#f8f4e9" stroke-width="1"/><animate attributeName="opacity" values="0;0;1;1;0;0" keyTimes="0;{before:.5f};{visible:.5f};{fade_start:.5f};{fade_end:.5f};1" dur="50s" repeatCount="indefinite"/><animateMotion path="{path}" dur="50s" begin="-{delay:.4f}s" repeatCount="indefinite"/></g>')
+parts.append(f'<g><circle r="8" fill="#3a805d" stroke="#f8f4e9" stroke-width="1"/><circle cx="-2" cy="-2" r="1" fill="white"/><circle cx="2" cy="-2" r="1" fill="white"/><animateMotion path="{path}" dur="50s" repeatCount="indefinite"/></g>');parts.append('<text x="69" y="490" font-family="Arial,sans-serif" font-size="14" fill="#779096">Each square represents one day · The snake grows and starts again</text></svg>')
 (p/'contributions-mobile.svg').write_text('\n'.join(parts));print(f'Mobile calendar: {len(cells)} real days, {len(food)} contribution days')
 
 # Light and dark charts are generated from the same snapshot.
-svgcolors={'#f8f4e9':'#17272e','#294d60':'#dbe9df','#72949b':'#a1beb3','#c2dad5':'#426a65','#6d8a90':'#9abbb1','#779096':'#92ada5','#e2ece9':'#304949','#c3ddd8':'#4e7770','#93c4bf':'#72a99c','#619c9f':'#92caba','#3d718b':'#b2d9cf','#d5a0a5':'#e6aabb','#b96e82':'#df8fa5'}
+svgcolors={'#f8f4e9':'#17272e','#294d60':'#dbe9df','#72949b':'#a1beb3','#c2dad5':'#426a65','#6d8a90':'#9abbb1','#779096':'#92ada5','#e2ece9':'#304949','#f2ced7':'#a3667d','#e8a7b9':'#c38098','#d97f9b':'#dfa1b5','#bf5678':'#f2c2ce','#6eae84':'#91d3a5','#3a805d':'#69b785'}
 for name in ['contributions-snake.svg','contributions-mobile.svg']:
     text=(p/name).read_text(encoding='utf-8')
     for light,dark in svgcolors.items():

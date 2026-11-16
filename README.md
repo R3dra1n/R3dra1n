@@ -4,7 +4,7 @@
 
 ### ◇ Selected Projects
 
-<p align="center"><a href="https://github.com/R3dra1n/PKU_boyaTower"><picture><source media="(max-width: 600px)" srcset="assets/project-boya-mobile-adaptive.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/project-boya-dark.png"><img src="assets/project-boya.png" alt="PKU_boyaTower — 3D model of Boya Tower" width="49%"></picture></a> <a href="https://github.com/R3dra1n/python"><picture><source media="(max-width: 600px)" srcset="assets/project-python-mobile-adaptive.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/project-python-dark.png"><img src="assets/project-python.png" alt="python — side projects and experiments" width="49%"></picture></a></p>
+<p align="center"><a href="https://github.com/R3dra1n/PKU_boyaTower"><picture><source media="(max-width: 600px)" srcset="assets/project-boya-sharp-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/project-boya-sharp-dark.svg"><img src="assets/project-boya-sharp.svg" alt="PKU_boyaTower — 3D model of Boya Tower" width="49%"></picture></a> <a href="https://github.com/R3dra1n/AgentIsland"><picture><source media="(max-width: 600px)" srcset="assets/project-agent-sharp-mobile.svg"><source media="(prefers-color-scheme: dark)" srcset="assets/project-agent-sharp-dark.svg"><img src="assets/project-agent-sharp.svg" alt="AgentIsland — AI assistant HUD for macOS" width="49%"></picture></a></p>
 
 ### ✿ Contribution Tides
 
